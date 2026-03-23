@@ -4,13 +4,12 @@
 # educational purposes provided that (1) you do not distribute or publish
 # solutions, (2) you retain this notice, and (3) you provide clear
 # attribution to UC Berkeley, including a link to http://ai.berkeley.edu.
-# 
+#
 # Attribution Information: The Pacman AI projects were developed at UC Berkeley.
 # The core projects and autograders were primarily created by John DeNero
 # (denero@cs.berkeley.edu) and Dan Klein (klein@cs.berkeley.edu).
 # Student side autograding was added by Brad Miller, Nick Hay, and
 # Pieter Abbeel (pabbeel@cs.berkeley.edu).
-
 
 """
 To run this script, type
@@ -23,12 +22,13 @@ the script should produce the output:
 Cost of [('apples', 2.0), ('pears', 3.0), ('limes', 4.0)] is 12.25
 """
 from __future__ import print_function
+from typing import Tuple, List, Union
 
 fruitPrices = {'apples': 2.00, 'oranges': 1.50, 'pears': 1.75,
                'limes': 0.75, 'strawberries': 1.00}
 
 
-def buyLotsOfFruit(orderList):
+def buyLotsOfFruit(orderList: List[Tuple[str, float]]) -> Union[float, None]:
     """
         orderList: List of (fruit, numPounds) tuples
 
@@ -36,6 +36,11 @@ def buyLotsOfFruit(orderList):
     """
     totalCost = 0.0
     "*** YOUR CODE HERE ***"
+    for fruit, numPounds in orderList:
+        if fruit not in fruitPrices:
+            print("Error: ", fruit, "is not in the price list")
+            return None
+        totalCost += fruitPrices[fruit] * numPounds
     return totalCost
 
 
